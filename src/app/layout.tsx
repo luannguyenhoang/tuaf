@@ -22,6 +22,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://nologin.tuaf.vn" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://nologin.tuaf.vn" />
+        <link rel="dns-prefetch" href="https://connect.facebook.net" />
+        <link rel="dns-prefetch" href="https://www.facebook.com" />
       </head>
       <body>
         <Script
