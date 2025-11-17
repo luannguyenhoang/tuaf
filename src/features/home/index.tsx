@@ -18,15 +18,16 @@ const Contact = dynamic(() => import('./Contact').then((mod) => mod.Contact), {
 const Counters = dynamic(() => import('./Counters').then((mod) => mod.Counters), {
   loading: () => <Loading />,
 });
-const Event = dynamic(() => import('./Event').then((mod) => mod.Event), {
-  loading: () => <Loading />,
-});
 
 const Review = dynamic(() => import('./Review').then((mod) => mod.Review), {
   loading: () => <Loading />,
 });
 
 const Support = dynamic(() => import('./Support').then((mod) => mod.Support), {
+  loading: () => <Loading />,
+});
+
+const Event = dynamic(() => import('./Event').then((mod) => mod.Event), {
   loading: () => <Loading />,
 });
 
@@ -86,19 +87,19 @@ export const Home = () => {
   return (
     <>
       <Banners banners={homeContent?.acf?.text_banner_t} />
-      {/* <Box pos={'sticky'} top={'92px'} zIndex={3}>
+      <Box pos={'sticky'} top={'92px'} zIndex={3}>
         <TextScrollHomePage />
-      </Box> */}
-      {/* <Categorys categorys={homeContent?.acf?.lists_categorys} /> */}
+      </Box>
+      <Categorys categorys={homeContent?.acf?.lists_categorys} />
       <Box ref={ref}>
         {isVisible && (
           <>
             <Benefit benefit={homeContent?.acf?.benefit} />
-            {/* <Support support={homeContent?.acf?.support} />
+            <Support support={homeContent?.acf?.support} />
             <Counters counter={homeContent?.acf?.counter} />
-            <Review review={homeContent?.acf?.review} /> */}
-            {/* <Contact contact={homeContent?.acf?.contact} /> */}
-            {/* {isLoading ? <Loading /> : <Event posts={posts} />} */}
+            <Review review={homeContent?.acf?.review} />
+            <Contact contact={homeContent?.acf?.contact} />
+            <Event posts={posts} />
           </>
         )}
       </Box>

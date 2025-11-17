@@ -7,7 +7,6 @@ import {
   Flex,
   Heading,
   IconButton,
-  Skeleton,
   Text,
   useBreakpointValue,
 } from '@chakra-ui/react';
@@ -60,8 +59,6 @@ interface BannersComponentProps {
 
 export const Banners = ({ banners }: BannersComponentProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isImageLoaded, setIsImageLoaded] = useState(false);
-  const [bgUrl, setBgUrl] = useState<string | undefined>(undefined);
 
   const firstImage = banners?.list_3?.[0]?.image;
 
@@ -72,7 +69,7 @@ export const Banners = ({ banners }: BannersComponentProps) => {
 
       const encodedUrl = encodeURIComponent(firstImage);
       const optimizedUrl = `/_next/image?url=${encodedUrl}&w=1920&q=70`;
-      
+
       const link = document.createElement('link');
       link.id = linkId;
       link.rel = 'preload';
@@ -106,92 +103,24 @@ export const Banners = ({ banners }: BannersComponentProps) => {
   const currentBg = banners?.list_3?.[currentSlide]?.image;
   const listFontSize = useBreakpointValue({ base: '10px', lg: '18px' });
 
-  useEffect(() => {
-    if (!currentBg) {
-      setIsImageLoaded(false);
-      setBgUrl(undefined);
-      return;
-    }
-    setIsImageLoaded(false);
-    setBgUrl(currentBg);
-    const img = document.createElement('img');
-    if (currentSlide === 0) {
-      (img as any).fetchPriority = 'high';
-    }
-    img.src = currentBg;
-    img.onload = () => {
-      setIsImageLoaded(true);
-    };
-    img.onerror = () => {
-      setBgUrl(undefined);
-      setIsImageLoaded(true);
-    };
-    return () => {
-      img.onload = null;
-      img.onerror = null;
-    };
-  }, [currentBg, currentSlide]);
-
   return (
-    <Box
-      py={{ base: 10, md: 10 }}
-      overflow="hidden"
-      position="relative"
-    >
-      {firstImage && currentSlide === 0 && (
-        <Box
-          position="absolute"
-          inset={0}
-          zIndex={0}
-          w="100%"
-          h="100%"
-        >
+    <Box py={{ base: 10, md: 10 }} overflow="hidden" position="relative" bg="gray.100">
+      {currentBg && (
+        <Box position="absolute" inset={0} zIndex={0} w="100%" h="100%">
           <Image
-            src={firstImage}
+            src={currentBg}
             alt=""
             fill
-            priority
-            quality={70}
+            priority={currentSlide === 0}
+            quality={60}
             sizes="100vw"
-            fetchPriority="high"
+            fetchPriority={currentSlide === 0 ? 'high' : undefined}
             style={{
               objectFit: 'cover',
               objectPosition: 'center',
             }}
           />
         </Box>
-      )}
-      {bgUrl && currentSlide !== 0 && (
-        <Box
-          position="absolute"
-          inset={0}
-          zIndex={0}
-          w="100%"
-          h="100%"
-        >
-          <Image
-            src={bgUrl}
-            alt=""
-            fill
-            quality={70}
-            sizes="100vw"
-            style={{
-              objectFit: 'cover',
-              objectPosition: 'center',
-            }}
-          />
-        </Box>
-      )}
-      {!isImageLoaded && (
-        <Skeleton
-          fadeDuration={0.2}
-          startColor="gray.200"
-          endColor="gray.300"
-          position="absolute"
-          inset={0}
-          zIndex={0}
-          pointerEvents="none"
-        />
       )}
       <Container
         maxW={{ base: '88%', md: '90%' }}
@@ -201,9 +130,6 @@ export const Banners = ({ banners }: BannersComponentProps) => {
         justifyContent="center"
         position="relative"
         zIndex={1}
-        opacity={isImageLoaded ? 1 : 0}
-        transition="opacity 0.2s ease-in-out"
-        pointerEvents={isImageLoaded ? 'auto' : 'none'}
       >
         <Flex
           w="100%"
