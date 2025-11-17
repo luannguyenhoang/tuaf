@@ -8,13 +8,15 @@ import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 const Banner = dynamic(() => import('./Banner').then((mod) => mod.Banners), {
-  loading: () => <Loading />,
+  loading: () => <Box h={{ base: '400px', md: '600px' }} />,
+  ssr: true,
 });
 const TextScroll = dynamic(() => import('./TextScroll').then((mod) => mod.TextScrollHomePage), {
   loading: () => <Loading />,
 });
 const Categorys = dynamic(() => import('./Categorys').then((mod) => mod.Categorys), {
-  loading: () => <Loading />,
+  loading: () => null,
+  ssr: true,
 });
 const Benefit = dynamic(() => import('./Benefit').then((mod) => mod.Benefit), {
   loading: () => <Loading />,
