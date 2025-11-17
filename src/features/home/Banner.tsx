@@ -72,7 +72,7 @@ export const Banners = ({ banners }: BannersComponentProps) => {
 
       const encodedUrl = encodeURIComponent(firstImage);
       const optimizedUrl = `/_next/image?url=${encodedUrl}&w=1920&q=70`;
-      
+
       const link = document.createElement('link');
       link.id = linkId;
       link.rel = 'preload';
@@ -150,11 +150,7 @@ export const Banners = ({ banners }: BannersComponentProps) => {
   }, [currentBg, currentSlide]);
 
   return (
-    <Box
-      py={{ base: 10, md: 10 }}
-      overflow="hidden"
-      position="relative"
-    >
+    <Box py={{ base: 10, md: 10 }} overflow="hidden" position="relative">
       {firstImage && currentSlide === 0 && (
         <>
           <img
@@ -171,13 +167,7 @@ export const Banners = ({ banners }: BannersComponentProps) => {
             }}
             aria-hidden="true"
           />
-          <Box
-            position="absolute"
-            inset={0}
-            zIndex={0}
-            w="100%"
-            h="100%"
-          >
+          <Box position="absolute" inset={0} zIndex={0} w="100%" h="100%">
             <Image
               src={firstImage}
               alt=""
@@ -194,13 +184,7 @@ export const Banners = ({ banners }: BannersComponentProps) => {
         </>
       )}
       {bgUrl && currentSlide !== 0 && (
-        <Box
-          position="absolute"
-          inset={0}
-          zIndex={0}
-          w="100%"
-          h="100%"
-        >
+        <Box position="absolute" inset={0} zIndex={0} w="100%" h="100%">
           <Image
             src={bgUrl}
             alt=""
