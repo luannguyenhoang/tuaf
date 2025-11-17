@@ -70,11 +70,14 @@ export const Banners = ({ banners }: BannersComponentProps) => {
       const linkId = 'lcp-banner-preload';
       if (document.getElementById(linkId)) return;
 
+      const encodedUrl = encodeURIComponent(firstImage);
+      const optimizedUrl = `/_next/image?url=${encodedUrl}&w=1920&q=70`;
+      
       const link = document.createElement('link');
       link.id = linkId;
       link.rel = 'preload';
       link.as = 'image';
-      link.href = firstImage;
+      link.href = optimizedUrl;
       link.setAttribute('fetchpriority', 'high');
       link.setAttribute('crossorigin', 'anonymous');
       document.head.insertBefore(link, document.head.firstChild);
@@ -135,7 +138,29 @@ export const Banners = ({ banners }: BannersComponentProps) => {
       overflow="hidden"
       position="relative"
     >
-      {bgUrl && (
+      {firstImage && currentSlide === 0 && (
+        <Box
+          position="absolute"
+          inset={0}
+          zIndex={0}
+          w="100%"
+          h="100%"
+        >
+          <Image
+            src={firstImage}
+            alt=""
+            fill
+            priority
+            quality={70}
+            sizes="100vw"
+            style={{
+              objectFit: 'cover',
+              objectPosition: 'center',
+            }}
+          />
+        </Box>
+      )}
+      {bgUrl && currentSlide !== 0 && (
         <Box
           position="absolute"
           inset={0}
@@ -147,7 +172,6 @@ export const Banners = ({ banners }: BannersComponentProps) => {
             src={bgUrl}
             alt=""
             fill
-            priority={currentSlide === 0}
             quality={70}
             sizes="100vw"
             style={{
