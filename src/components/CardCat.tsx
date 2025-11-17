@@ -54,7 +54,7 @@ export const CardCat = ({
               alt={title}
               priority
               quality={70}
-              sizes="(max-width: 768px) 100vw, 256px"
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 256px"
               style={{
                 width: '100%',
                 height: '187px',
