@@ -26,18 +26,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <Script
           id="load-google-fonts"
-          strategy="lazyOnload"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `
             (function() {
-              var fontLinkId = 'google-fonts-stylesheet';
-              if (document.getElementById(fontLinkId)) return;
               var link = document.createElement('link');
-              link.id = fontLinkId;
-              link.href = 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap';
+              link.href = 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap&text=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ĂăÂâÊêÔôƠơƯưĐđÁáÀàẢảÃãẠạẮắẰằẲẳẴẵẶặẤấẦầẨẩẪẫẬậÉéÈèẺẻẼẽẸẹẾếỀềỂểỄễỆệÍíÌìỈỉĨĩỊịÓóÒòỎỏÕõỌọỐốỒồỔổỖỗỘộỚớỜờỞởỠỡỢợÚúÙùỦủŨũỤụỨứỪừỬửỮữỰựÝýỲỳỶỷỸỹỴỵ';
               link.rel = 'stylesheet';
-              link.media = 'print';
-              link.onload = function() { this.media = 'all'; };
               document.head.appendChild(link);
             })();
             `,

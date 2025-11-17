@@ -7,17 +7,11 @@ import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-const Banner = dynamic(() => import('./Banner').then((mod) => mod.Banners), {
-  loading: () => <Box h={{ base: '400px', md: '600px' }} />,
-  ssr: true,
-});
+const Banner = dynamic(() => import('./Banner').then((mod) => mod.Banners));
 const TextScroll = dynamic(() => import('./TextScroll').then((mod) => mod.TextScrollHomePage), {
   loading: () => <Loading />,
 });
-const Categorys = dynamic(() => import('./Categorys').then((mod) => mod.Categorys), {
-  loading: () => null,
-  ssr: true,
-});
+const Categorys = dynamic(() => import('./Categorys').then((mod) => mod.Categorys));
 const Benefit = dynamic(() => import('./Benefit').then((mod) => mod.Benefit), {
   loading: () => <Loading />,
 });
