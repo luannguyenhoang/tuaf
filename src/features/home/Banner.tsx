@@ -12,6 +12,7 @@ import {
   useBreakpointValue,
 } from '@chakra-ui/react';
 import { AnimatePresence, motion } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
@@ -109,13 +110,13 @@ export const Banners = ({ banners }: BannersComponentProps) => {
       return;
     }
     setIsImageLoaded(false);
-    const img = new Image();
+    setBgUrl(currentBg);
+    const img = document.createElement('img');
     if (currentSlide === 0) {
       (img as any).fetchPriority = 'high';
     }
     img.src = currentBg;
     img.onload = () => {
-      setBgUrl(currentBg);
       setIsImageLoaded(true);
     };
     img.onerror = () => {
@@ -133,37 +134,40 @@ export const Banners = ({ banners }: BannersComponentProps) => {
       py={{ base: 10, md: 10 }}
       overflow="hidden"
       position="relative"
-      bgImage={bgUrl ? `url(${bgUrl})` : undefined}
-      bgSize="cover"
-      bgPos="center"
-      bgRepeat="no-repeat"
     >
-      {firstImage && currentSlide === 0 && (
-        <img
-          src={firstImage}
-          alt=""
-          fetchPriority="high"
-          style={{
-            position: 'absolute',
-            width: '1px',
-            height: '1px',
-            opacity: 0,
-            pointerEvents: 'none',
-            zIndex: -1,
-          }}
-          aria-hidden="true"
+      {bgUrl && (
+        <Box
+          position="absolute"
+          inset={0}
+          zIndex={0}
+          w="100%"
+          h="100%"
+        >
+          <Image
+            src={bgUrl}
+            alt=""
+            fill
+            priority={currentSlide === 0}
+            quality={70}
+            sizes="100vw"
+            style={{
+              objectFit: 'cover',
+              objectPosition: 'center',
+            }}
+          />
+        </Box>
+      )}
+      {!isImageLoaded && (
+        <Skeleton
+          fadeDuration={0.2}
+          startColor="gray.200"
+          endColor="gray.300"
+          position="absolute"
+          inset={0}
+          zIndex={0}
+          pointerEvents="none"
         />
       )}
-      <Skeleton
-        isLoaded={isImageLoaded}
-        fadeDuration={0.2}
-        startColor="gray.200"
-        endColor="gray.300"
-        position="absolute"
-        inset={0}
-        zIndex={0}
-        pointerEvents="none"
-      />
       <Container
         maxW={{ base: '88%', md: '90%' }}
         h={{ base: '44', md: 'xl' }}

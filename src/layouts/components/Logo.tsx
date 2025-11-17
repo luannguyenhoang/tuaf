@@ -11,7 +11,7 @@ export const Logo = ({ logo }: { logo?: string }) => {
         src={logo || `/logo-tuaf.png`}
         alt="logo Trường Đại học Nông lâm Thái Nguyên"
         quality={70}
-        sizes="(max-width: 768px) 80px, 96px"
+        sizes="(max-width: 480px) 60px, (max-width: 768px) 80px, 96px"
       />
     </Link>
   );
