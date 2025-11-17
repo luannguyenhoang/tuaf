@@ -85,6 +85,23 @@ export const Banners = ({ banners }: BannersComponentProps) => {
   }, [firstImage]);
 
   useEffect(() => {
+    if (firstImage && currentSlide === 0 && typeof window !== 'undefined') {
+      const findAndSetFetchPriority = () => {
+        const imgs = document.querySelectorAll('img[data-nimg="fill"]');
+        if (imgs.length > 0) {
+          const firstImg = imgs[0] as HTMLImageElement;
+          if (firstImg && firstImg.src.includes(encodeURIComponent(firstImage))) {
+            firstImg.setAttribute('fetchpriority', 'high');
+          }
+        } else {
+          setTimeout(findAndSetFetchPriority, 50);
+        }
+      };
+      findAndSetFetchPriority();
+    }
+  }, [firstImage, currentSlide]);
+
+  useEffect(() => {
     const id = setTimeout(() => {
       setCurrentSlide((prev) => (prev + 1) % 4);
     }, 6000);
@@ -139,26 +156,42 @@ export const Banners = ({ banners }: BannersComponentProps) => {
       position="relative"
     >
       {firstImage && currentSlide === 0 && (
-        <Box
-          position="absolute"
-          inset={0}
-          zIndex={0}
-          w="100%"
-          h="100%"
-        >
-          <Image
+        <>
+          <img
             src={firstImage}
             alt=""
-            fill
-            priority
-            quality={70}
-            sizes="100vw"
+            fetchPriority="high"
             style={{
-              objectFit: 'cover',
-              objectPosition: 'center',
+              position: 'absolute',
+              width: '1px',
+              height: '1px',
+              opacity: 0,
+              pointerEvents: 'none',
+              zIndex: -1,
             }}
+            aria-hidden="true"
           />
-        </Box>
+          <Box
+            position="absolute"
+            inset={0}
+            zIndex={0}
+            w="100%"
+            h="100%"
+          >
+            <Image
+              src={firstImage}
+              alt=""
+              fill
+              priority
+              quality={70}
+              sizes="100vw"
+              style={{
+                objectFit: 'cover',
+                objectPosition: 'center',
+              }}
+            />
+          </Box>
+        </>
       )}
       {bgUrl && currentSlide !== 0 && (
         <Box
