@@ -72,7 +72,7 @@ export const Banners = ({ banners }: BannersComponentProps) => {
 
       const encodedUrl = encodeURIComponent(firstImage);
       const optimizedUrl = `/_next/image?url=${encodedUrl}&w=1920&q=70`;
-
+      
       const link = document.createElement('link');
       link.id = linkId;
       link.rel = 'preload';
@@ -83,23 +83,6 @@ export const Banners = ({ banners }: BannersComponentProps) => {
       document.head.insertBefore(link, document.head.firstChild);
     }
   }, [firstImage]);
-
-  useEffect(() => {
-    if (firstImage && currentSlide === 0 && typeof window !== 'undefined') {
-      const findAndSetFetchPriority = () => {
-        const imgs = document.querySelectorAll('img[data-nimg="fill"]');
-        if (imgs.length > 0) {
-          const firstImg = imgs[0] as HTMLImageElement;
-          if (firstImg && firstImg.src.includes(encodeURIComponent(firstImage))) {
-            firstImg.setAttribute('fetchpriority', 'high');
-          }
-        } else {
-          setTimeout(findAndSetFetchPriority, 50);
-        }
-      };
-      findAndSetFetchPriority();
-    }
-  }, [firstImage, currentSlide]);
 
   useEffect(() => {
     const id = setTimeout(() => {
@@ -150,41 +133,42 @@ export const Banners = ({ banners }: BannersComponentProps) => {
   }, [currentBg, currentSlide]);
 
   return (
-    <Box py={{ base: 10, md: 10 }} overflow="hidden" position="relative">
+    <Box
+      py={{ base: 10, md: 10 }}
+      overflow="hidden"
+      position="relative"
+    >
       {firstImage && currentSlide === 0 && (
-        <>
-          <img
+        <Box
+          position="absolute"
+          inset={0}
+          zIndex={0}
+          w="100%"
+          h="100%"
+        >
+          <Image
             src={firstImage}
             alt=""
+            fill
+            priority
+            quality={70}
+            sizes="100vw"
             fetchPriority="high"
             style={{
-              position: 'absolute',
-              width: '1px',
-              height: '1px',
-              opacity: 0,
-              pointerEvents: 'none',
-              zIndex: -1,
+              objectFit: 'cover',
+              objectPosition: 'center',
             }}
-            aria-hidden="true"
           />
-          <Box position="absolute" inset={0} zIndex={0} w="100%" h="100%">
-            <Image
-              src={firstImage}
-              alt=""
-              fill
-              priority
-              quality={70}
-              sizes="100vw"
-              style={{
-                objectFit: 'cover',
-                objectPosition: 'center',
-              }}
-            />
-          </Box>
-        </>
+        </Box>
       )}
       {bgUrl && currentSlide !== 0 && (
-        <Box position="absolute" inset={0} zIndex={0} w="100%" h="100%">
+        <Box
+          position="absolute"
+          inset={0}
+          zIndex={0}
+          w="100%"
+          h="100%"
+        >
           <Image
             src={bgUrl}
             alt=""
