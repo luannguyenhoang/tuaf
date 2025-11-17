@@ -125,6 +125,7 @@ export const Support = ({ support }: SupportProps) => {
               width={600}
               height={400}
               quality={70}
+              sizes="(max-width: 768px) 100vw, 600px"
               style={{ borderRadius: '12px', width: '100%', height: 'auto' }}
             />
             <Text fontWeight={'bold'} textAlign={'center'}>

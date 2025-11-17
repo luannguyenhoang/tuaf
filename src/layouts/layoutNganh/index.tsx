@@ -52,6 +52,7 @@ const Dangky = () => {
             width={600}
             height={800}
             quality={70}
+            sizes="(max-width: 768px) 100vw, 600px"
             style={{ width: '100%', height: 'auto' }}
           />
         </GridItem>

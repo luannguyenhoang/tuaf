@@ -30,6 +30,7 @@ export const Item = ({ path, image, title }: { path: string; image: string; titl
         src={image}
         alt={title}
         quality={70}
+        sizes="(max-width: 768px) 100vw, 700px"
         style={{ maxHeight: '150px', filter: 'brightness(50%)' }}
       />
       <Box

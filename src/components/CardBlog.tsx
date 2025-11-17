@@ -68,6 +68,7 @@ export const CardBlog = ({
                 alt={title}
                 fill
                 quality={70}
+                sizes="(max-width: 768px) 100vw, 445px"
                 style={{
                   objectFit: 'contain',
                   aspectRatio: '3 / 2',

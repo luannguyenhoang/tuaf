@@ -106,6 +106,7 @@ export const Banner = ({ textBanner }: TextBannerProps) => {
               height={355}
               priority
               quality={70}
+              sizes="(max-width: 768px) 100vw, 540px"
               style={{ width: '100%', height: 'auto' }}
             />
           </Flex>

@@ -42,6 +42,7 @@ export const Partner = () => {
                 src={partner}
                 alt="Đối tác Evstep"
                 quality={70}
+                sizes="(max-width: 480px) 100px, 200px"
               />
             }
           </SwiperSlide>

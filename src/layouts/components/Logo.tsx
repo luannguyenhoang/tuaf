@@ -6,11 +6,12 @@ export const Logo = ({ logo }: { logo?: string }) => {
     <Link href="/" prefetch={false}>
       <Image
         priority
-        width={80}
-        height={80}
+        width={96}
+        height={96}
         src={logo || `/logo-tuaf.png`}
         alt="logo Trường Đại học Nông lâm Thái Nguyên"
         quality={70}
+        sizes="(max-width: 768px) 80px, 96px"
       />
     </Link>
   );

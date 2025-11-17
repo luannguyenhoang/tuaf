@@ -17,6 +17,7 @@ export const DangkyTc = () => {
           height={100}
           alt="Thành công"
           quality={70}
+          sizes="100px"
         />
         <Text fontSize={'18px'} fontWeight={600} color={'green.700'} pt={'16px'}>
           Cán bộ tư vấn tuyển sinh sẽ liên hệ hỗ trợ tư vấn cho bạn ngay nhé!

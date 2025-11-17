@@ -48,12 +48,13 @@ export const CardCat = ({
         <Box>
           <Box bg={'gray.100'} mt={-6} mx={-6} mb={6} pos={'relative'}>
             <Image
-              width={600}
-              height={350}
+              width={256}
+              height={188}
               src={image || `/blog.jpg`}
               alt={title}
               priority
               quality={70}
+              sizes="(max-width: 768px) 100vw, 256px"
               style={{
                 width: '100%',
                 height: '187px',

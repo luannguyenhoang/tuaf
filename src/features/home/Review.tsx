@@ -115,9 +115,10 @@ const TestimonialAvatar = ({ src, name, title }: { src: string; name: string; ti
           loading="lazy"
           src={src}
           alt="Ảnh nhân vật"
-          width={305}
-          height={405}
+          width={50}
+          height={50}
           quality={70}
+          sizes="50px"
           style={{ width: '100%', height: 'auto' }}
         />
       </Box>

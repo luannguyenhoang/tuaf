@@ -68,10 +68,10 @@ export const Search = () => {
         <Image
           src={'/truong-dai-hoc-nong-lam-thai-nguyen.jpg'}
           alt="image-alt-text"
-          layout="fill"
-          objectFit="cover"
-          objectPosition="0 70%"
+          fill
           quality={70}
+          sizes="100vw"
+          style={{ objectFit: 'cover', objectPosition: '0 70%' }}
         />
         <Container maxW={'6xl'} zIndex={2}>
           <Box>

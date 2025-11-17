@@ -250,6 +250,7 @@ export const Footer = () => {
                     width={348}
                     height={232}
                     quality={70}
+                    sizes="(max-width: 768px) 100vw, 348px"
                   />
                 </Link>
               </Stack>
@@ -271,6 +272,7 @@ export const Footer = () => {
                     width={348}
                     height={232}
                     quality={70}
+                    sizes="(max-width: 768px) 100vw, 348px"
                   />
                 </Link>
               </Stack>

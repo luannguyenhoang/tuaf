@@ -35,6 +35,7 @@ export const Branch = (props: IBranch) => {
               width={600}
               height={500}
               quality={70}
+              sizes="(max-width: 768px) 100vw, 600px"
               style={{ width: '100%', height: 'auto' }}
             />
           </GridItem>
@@ -94,6 +95,7 @@ export const Branch = (props: IBranch) => {
               width={600}
               height={500}
               quality={70}
+              sizes="(max-width: 768px) 100vw, 600px"
               style={{ width: '100%', height: 'auto' }}
             />
           </GridItem>
