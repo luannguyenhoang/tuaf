@@ -249,7 +249,7 @@ export const Footer = () => {
                     alt="Tìm đối tác"
                     width={348}
                     height={232}
-                    quality={70}
+                    quality={60}
                     sizes="(max-width: 768px) 100vw, 348px"
                   />
                 </Link>
@@ -271,7 +271,7 @@ export const Footer = () => {
                     alt="Tìm đối tác"
                     width={348}
                     height={232}
-                    quality={70}
+                    quality={60}
                     sizes="(max-width: 768px) 100vw, 348px"
                   />
                 </Link>

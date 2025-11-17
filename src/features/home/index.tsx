@@ -6,16 +6,9 @@ import { Box } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-
-const Banner = dynamic(() => import('./Banner').then((mod) => mod.Banners), {
-  loading: () => <Loading />,
-});
-const TextScroll = dynamic(() => import('./TextScroll').then((mod) => mod.TextScrollHomePage), {
-  loading: () => <Loading />,
-});
-const Categorys = dynamic(() => import('./Categorys').then((mod) => mod.Categorys), {
-  loading: () => <Loading />,
-});
+import { Banners } from './Banner';
+import { TextScrollHomePage } from './TextScroll';
+import { Categorys } from './Categorys';
 const Benefit = dynamic(() => import('./Benefit').then((mod) => mod.Benefit), {
   loading: () => <Loading />,
 });
@@ -92,20 +85,20 @@ export const Home = () => {
   }, [inView, isVisible]);
   return (
     <>
-      <Banner banners={homeContent?.acf?.text_banner_t} />
-      <Box pos={'sticky'} top={'92px'} zIndex={3}>
-        <TextScroll />
-      </Box>
-      <Categorys categorys={homeContent?.acf?.lists_categorys} />
+      <Banners banners={homeContent?.acf?.text_banner_t} />
+      {/* <Box pos={'sticky'} top={'92px'} zIndex={3}>
+        <TextScrollHomePage />
+      </Box> */}
+      {/* <Categorys categorys={homeContent?.acf?.lists_categorys} /> */}
       <Box ref={ref}>
         {isVisible && (
           <>
             <Benefit benefit={homeContent?.acf?.benefit} />
-            <Support support={homeContent?.acf?.support} />
+            {/* <Support support={homeContent?.acf?.support} />
             <Counters counter={homeContent?.acf?.counter} />
-            <Review review={homeContent?.acf?.review} />
-            <Contact contact={homeContent?.acf?.contact} />
-            {isLoading ? <Loading /> : <Event posts={posts} />}
+            <Review review={homeContent?.acf?.review} /> */}
+            {/* <Contact contact={homeContent?.acf?.contact} /> */}
+            {/* {isLoading ? <Loading /> : <Event posts={posts} />} */}
           </>
         )}
       </Box>

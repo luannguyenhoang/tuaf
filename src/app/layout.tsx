@@ -26,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="dns-prefetch" href="https://www.facebook.com" />
       </head>
       <body>
-        <Script
+        {/* <Script
           id="load-google-fonts"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
@@ -75,7 +75,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               height="0" width="0" style="display:none;visibility:hidden"></iframe>
             `,
           }}
-        />
+        /> */}
         <ChakraProviderWrapper>
           <ModalProvider>
             <Layout>{children}</Layout>
