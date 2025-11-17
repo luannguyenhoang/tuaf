@@ -34,6 +34,7 @@ export const Branch = (props: IBranch) => {
               alt={props.name}
               width={600}
               height={500}
+              quality={70}
               style={{ width: '100%', height: 'auto' }}
             />
           </GridItem>
@@ -92,6 +93,7 @@ export const Branch = (props: IBranch) => {
               alt={props.name}
               width={600}
               height={500}
+              quality={70}
               style={{ width: '100%', height: 'auto' }}
             />
           </GridItem>

@@ -29,6 +29,7 @@ export const Item = ({ path, image, title }: { path: string; image: string; titl
         height={400}
         src={image}
         alt={title}
+        quality={70}
         style={{ maxHeight: '150px', filter: 'brightness(50%)' }}
       />
       <Box

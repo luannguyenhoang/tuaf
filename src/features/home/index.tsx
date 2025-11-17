@@ -80,7 +80,7 @@ export const Home = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       if (!isOpen && onOpen) onOpen();
-    }, 10000);
+    }, 15000);
     return () => clearTimeout(timeout);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Chỉ chạy một lần khi component mount

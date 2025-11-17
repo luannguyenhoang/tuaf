@@ -124,6 +124,7 @@ export const Support = ({ support }: SupportProps) => {
               alt="Kết hợp online và oflinet"
               width={600}
               height={400}
+              quality={70}
               style={{ borderRadius: '12px', width: '100%', height: 'auto' }}
             />
             <Text fontWeight={'bold'} textAlign={'center'}>

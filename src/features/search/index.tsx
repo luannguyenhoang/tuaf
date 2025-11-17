@@ -71,6 +71,7 @@ export const Search = () => {
           layout="fill"
           objectFit="cover"
           objectPosition="0 70%"
+          quality={70}
         />
         <Container maxW={'6xl'} zIndex={2}>
           <Box>

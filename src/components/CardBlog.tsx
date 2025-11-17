@@ -67,6 +67,7 @@ export const CardBlog = ({
                 src={image || '/blog.jpeg'}
                 alt={title}
                 fill
+                quality={70}
                 style={{
                   objectFit: 'contain',
                   aspectRatio: '3 / 2',

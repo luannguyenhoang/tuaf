@@ -10,7 +10,14 @@ export const DangkyTc = () => {
         <Heading size={'md'} color="red.500" pb={'24px'}>
           Đăng ký thành công!
         </Heading>
-        <Image priority src={'/success-icon.png'} width={100} height={100} alt="Thành công" />
+        <Image
+          priority
+          src={'/success-icon.png'}
+          width={100}
+          height={100}
+          alt="Thành công"
+          quality={70}
+        />
         <Text fontSize={'18px'} fontWeight={600} color={'green.700'} pt={'16px'}>
           Cán bộ tư vấn tuyển sinh sẽ liên hệ hỗ trợ tư vấn cho bạn ngay nhé!
         </Text>

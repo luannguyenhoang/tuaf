@@ -9,12 +9,16 @@ import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-const Header = dynamic(() => import('./header').then((mod) => mod.Header));
+const Header = dynamic(() => import('./header').then((mod) => mod.Header), {
+  loading: () => <Box h="60px" />,
+});
 
-const Footer = dynamic(() => import('./footer').then((mod) => mod.Footer));
+const Footer = dynamic(() => import('./footer').then((mod) => mod.Footer), {
+  loading: () => null,
+});
 const MobileBottomBar = dynamic(
   () => import('./components/MobileBottomBar').then((mod) => mod.MobileBottomBar),
-  { ssr: false }
+  { ssr: false, loading: () => null }
 );
 
 interface ILayout {

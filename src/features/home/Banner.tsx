@@ -62,6 +62,24 @@ export const Banners = ({ banners }: BannersComponentProps) => {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [bgUrl, setBgUrl] = useState<string | undefined>(undefined);
 
+  const firstImage = banners?.list_3?.[0]?.image;
+
+  useEffect(() => {
+    if (firstImage && typeof window !== 'undefined') {
+      const linkId = 'lcp-banner-preload';
+      if (document.getElementById(linkId)) return;
+
+      const link = document.createElement('link');
+      link.id = linkId;
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = firstImage;
+      link.setAttribute('fetchpriority', 'high');
+      link.setAttribute('crossorigin', 'anonymous');
+      document.head.insertBefore(link, document.head.firstChild);
+    }
+  }, [firstImage]);
+
   useEffect(() => {
     const id = setTimeout(() => {
       setCurrentSlide((prev) => (prev + 1) % 4);
@@ -92,6 +110,9 @@ export const Banners = ({ banners }: BannersComponentProps) => {
     }
     setIsImageLoaded(false);
     const img = new Image();
+    if (currentSlide === 0) {
+      (img as any).fetchPriority = 'high';
+    }
     img.src = currentBg;
     img.onload = () => {
       setBgUrl(currentBg);
@@ -105,7 +126,7 @@ export const Banners = ({ banners }: BannersComponentProps) => {
       img.onload = null;
       img.onerror = null;
     };
-  }, [currentBg]);
+  }, [currentBg, currentSlide]);
 
   return (
     <Box
@@ -117,6 +138,22 @@ export const Banners = ({ banners }: BannersComponentProps) => {
       bgPos="center"
       bgRepeat="no-repeat"
     >
+      {firstImage && currentSlide === 0 && (
+        <img
+          src={firstImage}
+          alt=""
+          fetchPriority="high"
+          style={{
+            position: 'absolute',
+            width: '1px',
+            height: '1px',
+            opacity: 0,
+            pointerEvents: 'none',
+            zIndex: -1,
+          }}
+          aria-hidden="true"
+        />
+      )}
       <Skeleton
         isLoaded={isImageLoaded}
         fadeDuration={0.2}

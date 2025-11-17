@@ -53,6 +53,7 @@ export const CardCat = ({
               src={image || `/blog.jpg`}
               alt={title}
               priority
+              quality={70}
               style={{
                 width: '100%',
                 height: '187px',

@@ -249,6 +249,7 @@ export const Footer = () => {
                     alt="Tìm đối tác"
                     width={348}
                     height={232}
+                    quality={70}
                   />
                 </Link>
               </Stack>
@@ -269,6 +270,7 @@ export const Footer = () => {
                     alt="Tìm đối tác"
                     width={348}
                     height={232}
+                    quality={70}
                   />
                 </Link>
               </Stack>

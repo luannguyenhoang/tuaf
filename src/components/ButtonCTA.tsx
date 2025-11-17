@@ -15,6 +15,7 @@ import {
   Tooltip,
 } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
+import { useEffect, useState } from 'react';
 import { BiPhone } from 'react-icons/bi';
 import { BsMessenger } from 'react-icons/bs';
 import { MdEmail } from 'react-icons/md';
@@ -79,6 +80,25 @@ export const BtnMes = (props: IconButtonProps) => {
 };
 
 export const BtnEmail = (props: IconButtonProps) => {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return (
+      <IconButton
+        icon={<MdEmail />}
+        rounded={'full'}
+        color={'white'}
+        bg={'orange.500'}
+        p={'8px'}
+        {...props}
+      />
+    );
+  }
+
   return (
     <Popover placement="left" trigger="hover">
       <PopoverTrigger>

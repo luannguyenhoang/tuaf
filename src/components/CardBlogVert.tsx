@@ -52,6 +52,7 @@ export const CardBlogVert = ({
             height={200}
             src={image || `/blog.jpg`}
             alt={title}
+            quality={70}
             style={{ width: '100%', height: 'auto' }}
           />
         </Box>

@@ -6,19 +6,27 @@ import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import { Logo } from '../components/Logo';
 
-const BtnTheme = dynamic(() => import('@/components/BtnTheme').then((mod) => mod.BtnTheme));
-const FormWrapper = dynamic(() =>
-  import('@/components/FormWrapper').then((mod) => mod.FormWrapper)
+const BtnTheme = dynamic(() => import('@/components/BtnTheme').then((mod) => mod.BtnTheme), {
+  loading: () => <Box w="120px" h="40px" />,
+});
+const FormWrapper = dynamic(
+  () => import('@/components/FormWrapper').then((mod) => mod.FormWrapper),
+  { loading: () => null }
 );
-const ModalBase = dynamic(() => import('@/components/Modal').then((mod) => mod.ModalBase));
-const DesktopNav = dynamic(() =>
-  import('@/layouts/components/DeskhopNav').then((mod) => mod.DesktopNav)
+const ModalBase = dynamic(() => import('@/components/Modal').then((mod) => mod.ModalBase), {
+  loading: () => null,
+});
+const DesktopNav = dynamic(
+  () => import('@/layouts/components/DeskhopNav').then((mod) => mod.DesktopNav),
+  { loading: () => null }
 );
-const HeaderTop = dynamic(() =>
-  import('@/layouts/components/HeaderTop').then((mod) => mod.HeaderTop)
+const HeaderTop = dynamic(
+  () => import('@/layouts/components/HeaderTop').then((mod) => mod.HeaderTop),
+  { loading: () => null }
 );
-const MobileNav = dynamic(() =>
-  import('@/layouts/components/MobileNav').then((mod) => mod.MobileNav)
+const MobileNav = dynamic(
+  () => import('@/layouts/components/MobileNav').then((mod) => mod.MobileNav),
+  { loading: () => null }
 );
 
 export const Header = () => {

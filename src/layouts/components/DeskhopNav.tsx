@@ -1,3 +1,5 @@
+'use client';
+
 import { menus } from '@/router';
 import {
   Box,
@@ -11,6 +13,7 @@ import {
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { BsChevronRight } from 'react-icons/bs';
 
 interface INavItem {
@@ -21,10 +24,40 @@ interface INavItem {
 
 export const DesktopNav = () => {
   const pathname = usePathname();
+  const [isMounted, setIsMounted] = useState(false);
 
   const linkColor = '#054659';
   const linkHoverColor = '#FA692E';
   const popoverContentBgColor = 'white';
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return (
+      <Stack direction={'row'} spacing={4}>
+        {menus.map((navItem) => (
+          <Box key={navItem.title}>
+            <Box
+              as={Link}
+              p={2}
+              href={navItem.path ?? '#'}
+              fontSize={'md'}
+              fontWeight={600}
+              color={pathname === (navItem.path || '/') ? linkHoverColor : linkColor}
+              _hover={{
+                textDecoration: 'none',
+                color: linkHoverColor,
+              }}
+            >
+              {navItem.title}
+            </Box>
+          </Box>
+        ))}
+      </Stack>
+    );
+  }
 
   return (
     <Stack direction={'row'} spacing={4}>

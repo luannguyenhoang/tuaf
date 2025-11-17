@@ -51,6 +51,7 @@ const Dangky = () => {
             alt="Phôi bằng Đại học Nông lâm"
             width={600}
             height={800}
+            quality={70}
             style={{ width: '100%', height: 'auto' }}
           />
         </GridItem>

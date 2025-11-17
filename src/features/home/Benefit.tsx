@@ -52,6 +52,7 @@ export const Item = ({
           alt={title}
           width={60}
           height={60}
+          quality={70}
           style={{ width: 'auto', height: 'auto' }}
         />
       </Center>

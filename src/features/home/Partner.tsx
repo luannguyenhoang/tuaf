@@ -34,7 +34,16 @@ export const Partner = () => {
       >
         {partners.map((partner, index) => (
           <SwiperSlide key={index}>
-            {<Image loading="lazy" width={200} height={150} src={partner} alt="Đối tác Evstep" />}
+            {
+              <Image
+                loading="lazy"
+                width={200}
+                height={150}
+                src={partner}
+                alt="Đối tác Evstep"
+                quality={70}
+              />
+            }
           </SwiperSlide>
         ))}
       </Swiper>
