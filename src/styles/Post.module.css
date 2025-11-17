@@ -1,0 +1,115 @@
+.post {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* đoạn css cho các bài viết */
+.post__main p {
+  padding-bottom: 12px;
+}
+
+.post__main h1,
+.post__main h2,
+.post__main h3,
+.post__main h4 {
+  font-weight: bold;
+  padding-bottom: 8px;
+}
+
+.post__main h1 {
+  font-size: 1.7rem;
+}
+
+.post__main h2 {
+  font-size: 1.5rem;
+}
+
+.post__main h3 {
+  font-size: 1.2rem;
+}
+
+.post__main h4 {
+  font-size: 1rem;
+}
+
+.post__main li {
+  margin-left: 25px;
+  padding-bottom: 8px;
+}
+
+.post__main a {
+  color: blueviolet;
+  text-decoration: underline;
+}
+
+.post__main img {
+  display: block;
+  margin: 0 auto;
+}
+
+.post__main figcaption {
+  padding-top: 5px;
+  text-align: center;
+  font-weight: 400;
+  padding-bottom: 8px;
+  font-style: italic;
+}
+
+.post__main table,
+.post__main th,
+.post__main td {
+  border: 1px solid black;
+}
+
+.post__main th,
+.post__main td {
+  padding: 6px;
+}
+
+.post__heading {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 12px;
+  margin-bottom: 24px;
+}
+
+.post__heading h1 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: 'center';
+  padding-bottom: '16px';
+}
+
+.not-found {
+  padding-top: 62px;
+}
+
+.not-found p {
+  font-weight: 600;
+  padding-bottom: 24px;
+  font-size: 1.2rem;
+}
+
+.not-found a {
+  color: red;
+  display: block;
+}
+
+@media (min-width: 1280px) {
+  .post {
+    flex-direction: row;
+  }
+
+  .post--share {
+    padding-top: 24px;
+    margin-right: 24px;
+    margin-left: -72px;
+    right: 100%;
+  }
+}
+
+@media (min-width: 1600px) {
+  .not-found p {
+    font-size: 2rem;
+  }
+}

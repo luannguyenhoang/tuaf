@@ -1,0 +1,111 @@
+/* #ez-toc-container {
+  border: 1px solid black;
+  border-radius: 16px;
+  width: max-content;
+  max-width: 100%;
+  padding: 8px 12px;
+  margin-bottom: 24px;
+}
+
+#ez-toc-container li {
+  list-style: none;
+}
+
+#ez-toc-container li a {
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+#ez-toc-container .ez-toc-title  {
+  font-size: 1.2rem;
+  font-weight: 600;
+} */
+#ez-toc-container {
+  border: 1px solid rgba(112, 111, 111, 0.705);
+  border-radius: 10px;
+  width: 100%;
+  max-width: 100%;
+  padding: 8px 12px;
+  margin-bottom: 24px;
+}
+
+#ez-toc-container li {
+  padding-bottom: 4px !important;
+  padding-left: 4px !important;
+  list-style: outside;
+}
+
+#ez-toc-title p {
+  padding-bottom: 4px !important;
+}
+
+#ez-toc-container li a {
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+ul.ez-toc-list li a {
+  color: black;
+  font-weight: 400 !important;
+  font-size: 15px !important;
+}
+
+ul.ez-toc-list li ul li a {
+  color: black;
+  font-weight: 300 !important;
+  font-size: 13px !important;
+}
+
+.ez-toc-container-direction li a:hover {
+  text-decoration: underline !important; /* Gạch chân khi hover */
+  color: #00b14f !important;
+}
+
+#ez-toc-list-level-3 {
+  padding-left: 50px !important;
+}
+#ez-toc-container .ez-toc-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.toc-sticky-box {
+  border: 2px solid black;
+  width: max-content;
+  max-width: 100%;
+  padding: 8px 12px;
+  margin-bottom: 24px;
+  background-color: #f9f9f9; /* Màu nền, có thể điều chỉnh */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+  overflow-y: auto; /* Cho phép cuộn nếu nội dung vượt quá chiều cao */
+}
+
+.toc-sticky-box li {
+  padding-bottom: 4px !important;
+  padding-left: 16px;
+  list-style: none;
+}
+
+.toc-sticky-box li a {
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.toc-sticky-box li a:hover {
+  text-decoration: underline; /* Gạch chân khi hover */
+  color: #00b14f;
+}
+
+.toc-sticky-box .ez-toc-title {
+  font-size: 1.2rem; /* Kích thước tiêu đề */
+  font-weight: 600; /* Đậm chữ tiêu đề */
+}
+
+.active {
+  background: #690097 !important;
+
+  color: #e7d83b !important;
+}

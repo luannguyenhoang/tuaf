@@ -1,0 +1,46 @@
+.m-scroll {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 70px;
+  background: linear-gradient(70deg, rgba(246, 137, 32, 1), rgba(252, 89, 52, 1) 100%);
+  overflow: hidden;
+  z-index: 5;
+}
+
+.m-scroll__title {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  white-space: nowrap;
+  transition: all 1s ease;
+}
+
+.m-scroll__title .items {
+  display: flex;
+  animation: scrollText 15s infinite linear;
+}
+
+.m-scroll__title .item {
+  margin: 0;
+  color: rgba(255, 255, 255, 1);
+  transition: all 2s ease;
+}
+
+/*div:hover {
+  animation-play-state: paused;
+}*/
+@keyframes scrollText {
+  from {
+    transform: translateX(0%);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}

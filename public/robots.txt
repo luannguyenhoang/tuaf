@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /api/
+Disallow: /private/
+Allow: /public/
+
+Sitemap: https://tuaf.vn/sitemap.xml
