@@ -56,27 +56,6 @@ interface BannersComponentProps {
 export const Banners = ({ banners }: BannersComponentProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const firstImage = banners?.list_3?.[0]?.image;
-
-  useEffect(() => {
-    if (firstImage && typeof window !== 'undefined') {
-      const linkId = 'lcp-banner-preload';
-      if (document.getElementById(linkId)) return;
-
-      const encodedUrl = encodeURIComponent(firstImage);
-      const optimizedUrl = `/_next/image?url=${encodedUrl}&w=1920&q=70`;
-
-      const link = document.createElement('link');
-      link.id = linkId;
-      link.rel = 'preload';
-      link.as = 'image';
-      link.href = optimizedUrl;
-      link.setAttribute('fetchpriority', 'high');
-      link.setAttribute('crossorigin', 'anonymous');
-      document.head.insertBefore(link, document.head.firstChild);
-    }
-  }, [firstImage]);
-
   useEffect(() => {
     const id = setTimeout(() => {
       setCurrentSlide((prev) => (prev + 1) % 4);
@@ -159,36 +138,36 @@ export const Banners = ({ banners }: BannersComponentProps) => {
             {currentSlide === 1 && (
               <Box>
                 <Text fontSize={{ base: 'md', md: '30px' }} fontWeight="bold">
-                    {banners?.list_1?.text_7 || 'Nộp hồ sơ trực tiếp hoặc gửi bưu điện'}
-                  </Text>
-                  <Text
-                    fontSize={{ base: '20', md: '45px' }}
-                    fontWeight="bold"
-                    maxW={{ base: '300px', lg: '600px' }}
-                  >
-                    {banners?.list_1?.text_8 || 'Trung tâm Đào tạo trực tuyến'}
-                  </Text>
-                  <Text
-                    fontSize={{ base: '12px', md: '20px' }}
-                    fontWeight="bold"
-                    maxW={{ base: '300px', lg: '600px' }}
-                    pb={4}
-                    dangerouslySetInnerHTML={{
-                      __html: clean(
-                        banners?.list_1?.text_9 ||
-                          'Miền Bắc: Số 116 Trần Vĩ, Phường Mai Dịch, Quận Cầu Giấy, Tp Hà Nội<br />Miền Nam: Số 469 Lê Hồng Phong, Phường 2, Quận 10, Thành phố Hồ Chí Minh'
-                      ),
-                    }}
-                  />
-                  <Button
-                    bg={'#F37021'}
-                    color={'white'}
-                    p={{ base: '10px', md: '25px' }}
-                    fontSize={{ base: 'sm', md: 'md' }}
-                    _hover={{ bg: '#F34D27FF', color: 'white' }}
-                    as={Link}
-                    href={'/dang-ky'}
-                  >
+                  {banners?.list_1?.text_7 || 'Nộp hồ sơ trực tiếp hoặc gửi bưu điện'}
+                </Text>
+                <Text
+                  fontSize={{ base: '20', md: '45px' }}
+                  fontWeight="bold"
+                  maxW={{ base: '300px', lg: '600px' }}
+                >
+                  {banners?.list_1?.text_8 || 'Trung tâm Đào tạo trực tuyến'}
+                </Text>
+                <Text
+                  fontSize={{ base: '12px', md: '20px' }}
+                  fontWeight="bold"
+                  maxW={{ base: '300px', lg: '600px' }}
+                  pb={4}
+                  dangerouslySetInnerHTML={{
+                    __html: clean(
+                      banners?.list_1?.text_9 ||
+                        'Miền Bắc: Số 116 Trần Vĩ, Phường Mai Dịch, Quận Cầu Giấy, Tp Hà Nội<br />Miền Nam: Số 469 Lê Hồng Phong, Phường 2, Quận 10, Thành phố Hồ Chí Minh'
+                    ),
+                  }}
+                />
+                <Button
+                  bg={'#F37021'}
+                  color={'white'}
+                  p={{ base: '10px', md: '25px' }}
+                  fontSize={{ base: 'sm', md: 'md' }}
+                  _hover={{ bg: '#F34D27FF', color: 'white' }}
+                  as={Link}
+                  href={'/dang-ky'}
+                >
                   Đăng ký tư vấn
                 </Button>
               </Box>
@@ -196,69 +175,67 @@ export const Banners = ({ banners }: BannersComponentProps) => {
 
             {currentSlide === 2 && (
               <Box>
-                  {/* slide 3 */}
+                {/* slide 3 */}
 
-                  <Box
-                    as="span"
-                    width="100%"
-                    fontSize={{ base: '20px', lg: '30px' }}
-                    textAlign="center"
-                    fontWeight={'bold'}
-                    mt="6px"
-                  >
-                    {banners?.list_1?.text_6 || 'KHAI GIẢNG NGÀY '}
-                  </Box>
-                  <ul
+                <Box
+                  as="span"
+                  width="100%"
+                  fontSize={{ base: '20px', lg: '30px' }}
+                  textAlign="center"
+                  fontWeight={'bold'}
+                  mt="6px"
+                >
+                  {banners?.list_1?.text_6 || 'KHAI GIẢNG NGÀY '}
+                </Box>
+                <ul
+                  style={{
+                    padding: 0,
+                    margin: 0,
+                    paddingLeft: '20px',
+                    paddingRight: '20px',
+                    fontSize: listFontSize,
+                    paddingBottom: '10px',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  <li
                     style={{
-                      padding: 0,
-                      margin: 0,
-                      paddingLeft: '20px',
-                      paddingRight: '20px',
-                      fontSize: listFontSize,
-                      paddingBottom: '10px',
-                      fontWeight: 'bold',
+                      width: '100%',
+                      marginBottom: '5px',
                     }}
                   >
-                    <li
-                      style={{
-                        width: '100%',
-                        marginBottom: '5px',
-                      }}
-                    >
-                      {banners?.list_1?.text_3 || 'Lịch khai giảng tại Hà Nội: 12/01/2025'}
-                    </li>
-                    <li style={{ width: '100%' }}>
-                      {banners?.list_1?.text_4 || 'Lịch khai giảng tại Hà Nội: 12/01/2025'}
-                    </li>
+                    {banners?.list_1?.text_3 || 'Lịch khai giảng tại Hà Nội: 12/01/2025'}
+                  </li>
+                  <li style={{ width: '100%' }}>
+                    {banners?.list_1?.text_4 || 'Lịch khai giảng tại Hà Nội: 12/01/2025'}
+                  </li>
 
-                    <li
-                      style={{
-                        width: '100%',
-                        marginTop: '5px',
-                      }}
-                    >
-                      {banners?.list_1?.text_10 ||
-                        'Lịch khai giảng tại Đà Nẵng: Dự kiến 17/08/2025'}
-                    </li>
-                    <li
-                      style={{
-                        width: '100%',
-                        marginTop: '5px',
-                      }}
-                    >
-                      {banners?.list_1?.text_11 ||
-                        'Lịch khai giảng tại Đà Nẵng: Dự kiến 17/08/2025'}
-                    </li>
-                  </ul>
-                  <Button
-                    bg={'#F37021'}
-                    color={'white'}
-                    p={{ base: '10px', md: '25px' }}
-                    fontSize={{ base: 'sm', md: 'md' }}
-                    _hover={{ bg: '#F34D27FF', color: 'white' }}
-                    as={Link}
-                    href={'/dang-ky'}
+                  <li
+                    style={{
+                      width: '100%',
+                      marginTop: '5px',
+                    }}
                   >
+                    {banners?.list_1?.text_10 || 'Lịch khai giảng tại Đà Nẵng: Dự kiến 17/08/2025'}
+                  </li>
+                  <li
+                    style={{
+                      width: '100%',
+                      marginTop: '5px',
+                    }}
+                  >
+                    {banners?.list_1?.text_11 || 'Lịch khai giảng tại Đà Nẵng: Dự kiến 17/08/2025'}
+                  </li>
+                </ul>
+                <Button
+                  bg={'#F37021'}
+                  color={'white'}
+                  p={{ base: '10px', md: '25px' }}
+                  fontSize={{ base: 'sm', md: 'md' }}
+                  _hover={{ bg: '#F34D27FF', color: 'white' }}
+                  as={Link}
+                  href={'/dang-ky'}
+                >
                   Đăng ký tư vấn
                 </Button>
               </Box>
@@ -266,38 +243,38 @@ export const Banners = ({ banners }: BannersComponentProps) => {
 
             {currentSlide === 3 && (
               <Box>
-                  {/* slide 4 */}
-                  <Text fontSize={{ base: 'md', md: '30px' }} fontWeight="bold">
-                    {banners?.list_1?.text_12 || 'Nộp hồ sơ trực tiếp hoặc gửi bưu điện'}
-                  </Text>
-                  <Text
-                    fontSize={{ base: '20', md: '45px' }}
-                    fontWeight="bold"
-                    maxW={{ base: '300px', lg: '600px' }}
-                  >
-                    {banners?.list_1?.text_13 || 'Trung tâm Đào tạo trực tuyến'}
-                  </Text>
-                  <Text
-                    fontSize={{ base: '12px', md: '20px' }}
-                    fontWeight="bold"
-                    maxW={{ base: '300px', lg: '600px' }}
-                    pb={4}
-                    dangerouslySetInnerHTML={{
-                      __html: clean(
-                        banners?.list_1?.text_14 ||
-                          'Miền Bắc: Số 116 Trần Vĩ, Phường Mai Dịch, Quận Cầu Giấy, Tp Hà Nội<br />Miền Nam: Số 469 Lê Hồng Phong, Phường 2, Quận 10, Thành phố Hồ Chí Minh'
-                      ),
-                    }}
-                  />
-                  <Button
-                    bg={'#F37021'}
-                    color={'white'}
-                    p={{ base: '10px', md: '25px' }}
-                    fontSize={{ base: 'sm', md: 'md' }}
-                    _hover={{ bg: '#F34D27FF', color: 'white' }}
-                    as={Link}
-                    href={'/dang-ky'}
-                  >
+                {/* slide 4 */}
+                <Text fontSize={{ base: 'md', md: '30px' }} fontWeight="bold">
+                  {banners?.list_1?.text_12 || 'Nộp hồ sơ trực tiếp hoặc gửi bưu điện'}
+                </Text>
+                <Text
+                  fontSize={{ base: '20', md: '45px' }}
+                  fontWeight="bold"
+                  maxW={{ base: '300px', lg: '600px' }}
+                >
+                  {banners?.list_1?.text_13 || 'Trung tâm Đào tạo trực tuyến'}
+                </Text>
+                <Text
+                  fontSize={{ base: '12px', md: '20px' }}
+                  fontWeight="bold"
+                  maxW={{ base: '300px', lg: '600px' }}
+                  pb={4}
+                  dangerouslySetInnerHTML={{
+                    __html: clean(
+                      banners?.list_1?.text_14 ||
+                        'Miền Bắc: Số 116 Trần Vĩ, Phường Mai Dịch, Quận Cầu Giấy, Tp Hà Nội<br />Miền Nam: Số 469 Lê Hồng Phong, Phường 2, Quận 10, Thành phố Hồ Chí Minh'
+                    ),
+                  }}
+                />
+                <Button
+                  bg={'#F37021'}
+                  color={'white'}
+                  p={{ base: '10px', md: '25px' }}
+                  fontSize={{ base: 'sm', md: 'md' }}
+                  _hover={{ bg: '#F34D27FF', color: 'white' }}
+                  as={Link}
+                  href={'/dang-ky'}
+                >
                   Đăng ký tư vấn
                 </Button>
               </Box>

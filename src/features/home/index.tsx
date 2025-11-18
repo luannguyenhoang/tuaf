@@ -31,19 +31,17 @@ const Event = dynamic(() => import('./Event').then((mod) => mod.Event), {
   loading: () => <Loading />,
 });
 
-export const Home = () => {
+export const Home = ({ initialHomeContent }: { initialHomeContent?: any }) => {
   const { isOpen, onOpen } = useModal();
   const [posts, setPosts] = useState<any>(null);
-  const [homeContent, setHomeContent] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [homeContent, setHomeContent] = useState<any>(initialHomeContent);
+  const [isLoading, setIsLoading] = useState(!initialHomeContent);
   const [isVisible, setIsVisible] = useState(false);
   const { ref, inView } = useInView({ threshold: 0.5 });
 
-  // Tối ưu gọi API cho cả bài viết và nội dung trang chủ trong một useEffect
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch bài viết
         const resPosts = await fetch(`/api/posts/?type=news&page=1`, {
           next: { revalidate: 3 },
         });
@@ -52,15 +50,17 @@ export const Home = () => {
         }
         const dataPosts = await resPosts.json();
         setPosts(dataPosts?.posts);
-        // Fetch nội dung trang chủ
-        const resContent = await fetch(`/api/content-page/?type=trang-chu`, {
-          next: { revalidate: 3 },
-        });
-        if (!resContent.ok) {
-          throw new Error(`Content fetch failed with status: ${resContent.statusText}`);
+
+        if (!initialHomeContent) {
+          const resContent = await fetch(`/api/content-page/?type=trang-chu`, {
+            next: { revalidate: 3 },
+          });
+          if (!resContent.ok) {
+            throw new Error(`Content fetch failed with status: ${resContent.statusText}`);
+          }
+          const dataContent = await resContent.json();
+          setHomeContent(dataContent?.posts[0]);
         }
-        const dataContent = await resContent.json();
-        setHomeContent(dataContent?.posts[0]);
       } catch (error) {
         console.error(error);
       } finally {
@@ -69,7 +69,7 @@ export const Home = () => {
     };
 
     fetchData();
-  }, []);
+  }, [initialHomeContent]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
