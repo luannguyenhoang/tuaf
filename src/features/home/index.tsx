@@ -87,7 +87,7 @@ export const Home = () => {
   return (
     <>
       <Banners banners={homeContent?.acf?.text_banner_t} />
-      <Box pos={'sticky'} top={'92px'} zIndex={3}>
+      <Box pos={'sticky'} top={'110px'} zIndex={3}>
         <TextScrollHomePage />
       </Box>
       <Categorys categorys={homeContent?.acf?.lists_categorys} />

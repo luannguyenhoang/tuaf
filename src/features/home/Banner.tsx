@@ -1,4 +1,3 @@
-import { ScrollMotions } from '@/components/ScrollMotion';
 import { clean } from '@/lib/sanitizeHtml';
 import {
   Box,
@@ -10,13 +9,10 @@ import {
   Text,
   useBreakpointValue,
 } from '@chakra-ui/react';
-import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-
-const MotionBox = motion(Box);
 
 interface BannerTexts {
   text_1?: string;
@@ -88,15 +84,6 @@ export const Banners = ({ banners }: BannersComponentProps) => {
     return () => clearTimeout(id);
   }, [currentSlide]);
 
-  const slideVariants = useMemo(
-    () => ({
-      initial: { opacity: 0, x: 40 },
-      animate: { opacity: 1, x: 0, transition: { duration: 0.4 } },
-      exit: { opacity: 0, x: -40, transition: { duration: 0.3 } },
-    }),
-    []
-  );
-
   const goPrev = () => setCurrentSlide((prev) => (prev - 1 + 4) % 4);
   const goNext = () => setCurrentSlide((prev) => (prev + 1) % 4);
 
@@ -139,57 +126,39 @@ export const Banners = ({ banners }: BannersComponentProps) => {
           gap={{ base: 6, md: 10 }}
           flexWrap={{ base: 'wrap', md: 'nowrap' }}
         >
-          <MotionBox flex="1" color="White" py={{ base: 4, md: 8 }} borderRadius="md">
-            <AnimatePresence mode="wait">
-              {currentSlide === 0 && (
-                <MotionBox
-                  key="slide-1"
-                  variants={slideVariants}
-                  initial="initial"
-                  animate="animate"
-                  exit="exit"
+          <Box flex="1" color="White" py={{ base: 4, md: 8 }} borderRadius="md">
+            {currentSlide === 0 && (
+              <Box>
+                <Heading as="h1" fontSize={{ base: '2xl', md: '3xl' }} mb={4} fontWeight="bold">
+                  <Box as="span" display="block" paddingBottom={'10px'}>
+                    {banners?.list_1?.text_1 || 'Tuyển sinh'}
+                  </Box>
+                  <Box
+                    as="span"
+                    fontSize={{ base: '20px', lg: '45px' }}
+                    display="block"
+                    maxW={{ base: '300px', lg: '600px' }}
+                  >
+                    {banners?.list_1?.text_2 || 'Cử Nhân Trực Tuyến'}
+                  </Box>
+                </Heading>
+                <Button
+                  bg={'#F37021'}
+                  color={'white'}
+                  p={{ base: '10px', md: '25px' }}
+                  fontSize={{ base: 'sm', md: 'md' }}
+                  _hover={{ bg: '#F34D27FF', color: 'white' }}
+                  as={Link}
+                  href={'/dang-ky'}
                 >
-                  {/* slide 1 */}
-                  <ScrollMotions delay={0.01}>
-                    <Heading as="h1" fontSize={{ base: '2xl', md: '3xl' }} mb={4} fontWeight="bold">
-                      <Box as="span" display="block" paddingBottom={'10px'}>
-                        {banners?.list_1?.text_1 || 'Tuyển sinh'}
-                      </Box>
-                      <Box
-                        as="span"
-                        fontSize={{ base: '20px', lg: '45px' }}
-                        display="block"
-                        maxW={{ base: '300px', lg: '600px' }}
-                      >
-                        {banners?.list_1?.text_2 || 'Cử Nhân Trực Tuyến'}
-                      </Box>
-                    </Heading>
-                    <Button
-                      bg={'#F37021'}
-                      color={'white'}
-                      p={{ base: '10px', md: '25px' }}
-                      fontSize={{ base: 'sm', md: 'md' }}
-                      _hover={{ bg: '#F34D27FF', color: 'white' }}
-                      as={Link}
-                      href={'/dang-ky'}
-                    >
-                      Đăng ký tư vấn
-                    </Button>
-                  </ScrollMotions>
-                  {/* slide 1 */}
-                </MotionBox>
-              )}
+                  Đăng ký tư vấn
+                </Button>
+              </Box>
+            )}
 
-              {currentSlide === 1 && (
-                <MotionBox
-                  key="slide-2"
-                  variants={slideVariants}
-                  initial="initial"
-                  animate="animate"
-                  exit="exit"
-                >
-                  {/* slide 2 */}
-                  <Text fontSize={{ base: 'md', md: '30px' }} fontWeight="bold">
+            {currentSlide === 1 && (
+              <Box>
+                <Text fontSize={{ base: 'md', md: '30px' }} fontWeight="bold">
                     {banners?.list_1?.text_7 || 'Nộp hồ sơ trực tiếp hoặc gửi bưu điện'}
                   </Text>
                   <Text
@@ -220,20 +189,13 @@ export const Banners = ({ banners }: BannersComponentProps) => {
                     as={Link}
                     href={'/dang-ky'}
                   >
-                    Đăng ký tư vấn
-                  </Button>
-                  {/* slide 2 */}
-                </MotionBox>
-              )}
+                  Đăng ký tư vấn
+                </Button>
+              </Box>
+            )}
 
-              {currentSlide === 2 && (
-                <MotionBox
-                  key="slide-3"
-                  variants={slideVariants}
-                  initial="initial"
-                  animate="animate"
-                  exit="exit"
-                >
+            {currentSlide === 2 && (
+              <Box>
                   {/* slide 3 */}
 
                   <Box
@@ -297,20 +259,13 @@ export const Banners = ({ banners }: BannersComponentProps) => {
                     as={Link}
                     href={'/dang-ky'}
                   >
-                    Đăng ký tư vấn
-                  </Button>
-                  {/* slide 3 */}
-                </MotionBox>
-              )}
+                  Đăng ký tư vấn
+                </Button>
+              </Box>
+            )}
 
-              {currentSlide === 3 && (
-                <MotionBox
-                  key="slide-4"
-                  variants={slideVariants}
-                  initial="initial"
-                  animate="animate"
-                  exit="exit"
-                >
+            {currentSlide === 3 && (
+              <Box>
                   {/* slide 4 */}
                   <Text fontSize={{ base: 'md', md: '30px' }} fontWeight="bold">
                     {banners?.list_1?.text_12 || 'Nộp hồ sơ trực tiếp hoặc gửi bưu điện'}
@@ -343,15 +298,11 @@ export const Banners = ({ banners }: BannersComponentProps) => {
                     as={Link}
                     href={'/dang-ky'}
                   >
-                    Đăng ký tư vấn
-                  </Button>
-                  {/* slide 2 */}
-                </MotionBox>
-              )}
-            </AnimatePresence>
-
-            {/* simple dots indicator */}
-          </MotionBox>
+                  Đăng ký tư vấn
+                </Button>
+              </Box>
+            )}
+          </Box>
         </Flex>
       </Container>
       <IconButton
